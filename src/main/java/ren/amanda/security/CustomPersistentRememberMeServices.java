@@ -3,6 +3,7 @@ package ren.amanda.security;
 import ren.amanda.domain.PersistentToken;
 import ren.amanda.repository.PersistentTokenRepository;
 import ren.amanda.repository.UserRepository;
+import ren.amanda.service.util.IPUtil;
 import ren.amanda.config.JHipsterProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,7 +88,7 @@ public class CustomPersistentRememberMeServices extends
         log.debug("Refreshing persistent login token for user '{}', series '{}'", login, token.getSeries());
         token.setTokenDate(LocalDate.now());
         token.setTokenValue(generateTokenData());
-        token.setIpAddress(request.getRemoteAddr());
+        token.setIpAddress(IPUtil.getClientIP(request));
         token.setUserAgent(request.getHeader("User-Agent"));
         try {
             persistentTokenRepository.saveAndFlush(token);
@@ -112,7 +113,7 @@ public class CustomPersistentRememberMeServices extends
             t.setUser(u);
             t.setTokenValue(generateTokenData());
             t.setTokenDate(LocalDate.now());
-            t.setIpAddress(request.getRemoteAddr());
+            t.setIpAddress(IPUtil.getClientIP(request));
             t.setUserAgent(request.getHeader("User-Agent"));
             return t;
         }).orElseThrow(() -> new UsernameNotFoundException("User " + login + " was not found in the database"));

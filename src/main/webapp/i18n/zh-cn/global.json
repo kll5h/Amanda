@@ -43,6 +43,8 @@
             "newpassword.placeholder": "您的新密码",
             "confirmpassword": "新密码确认",
             "confirmpassword.placeholder": "确认您的新密码",
+            "mobile": "手机号码",
+            "mobile.placeholder": "您的手机号码",
             "email": "电子邮件",
             "email.placeholder": "您的电子邮件"
         },
@@ -65,6 +67,12 @@
                     "required": "您的确认密码是必填项.",
                     "minlength": "您的确认密码长度至少要有5个字符",
                     "maxlength": "您的确认密码长度不能超过50个字符"
+                },
+                "mobile": {
+                    "required": "您的手机号码是必填项.",
+                    "invalid": "您的手机号码格式不正确.",
+                    "minlength": "您的手机号码长度至少要有11个字符",
+                    "maxlength": "您的手机号码长度不能超过11个字符."
                 },
                 "email": {
                     "required": "您的电子邮件是必填项.",

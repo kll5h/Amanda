@@ -30,7 +30,7 @@
             <td>{{audit.type}}</td>
             <td>
                 <span ng-show="audit.data.message">{{audit.data.message}}</span>
-                <span ng-show="audit.data.remoteAddress"><span data-translate="audits.table.data.remoteAddress">Remote Address</span> {{audit.data.remoteAddress}}</span>
+                <span ng-show="audit.data.clientIP"><span data-translate="audits.table.data.clientIP">Client IP</span> {{audit.data.clientIP}}</span>
             </td>
         </tr>
     </table>

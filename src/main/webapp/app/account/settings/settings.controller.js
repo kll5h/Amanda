@@ -21,6 +21,7 @@
         var copyAccount = function (account) {
             return {
                 activated: account.activated,
+                mobile: account.mobile,
                 email: account.email,
                 firstName: account.firstName,
                 langKey: account.langKey,

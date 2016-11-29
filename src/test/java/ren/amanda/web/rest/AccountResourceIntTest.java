@@ -113,6 +113,7 @@ public class AccountResourceIntTest {
         user.setLogin("test");
         user.setFirstName("john");
         user.setLastName("doe");
+        user.setMobile("13812345678");
         user.setEmail("john.doe@jhipter.com");
         user.setAuthorities(authorities);
         when(mockUserService.getUserWithAuthorities()).thenReturn(user);
@@ -124,6 +125,7 @@ public class AccountResourceIntTest {
                 .andExpect(jsonPath("$.login").value("test"))
                 .andExpect(jsonPath("$.firstName").value("john"))
                 .andExpect(jsonPath("$.lastName").value("doe"))
+                .andExpect(jsonPath("$.mobile").value("13812345678"))
                 .andExpect(jsonPath("$.email").value("john.doe@jhipter.com"))
                 .andExpect(jsonPath("$.authorities").value(AuthoritiesConstants.ADMIN));
     }
@@ -146,9 +148,10 @@ public class AccountResourceIntTest {
             "password",             // password
             "Joe",                  // firstName
             "Shmoe",                // lastName
+            "13812345678",          // mobile
             "joe@example.com",      // e-mail
             true,                   // activated
-            "zh-cn",                   // langKey
+            "zh-cn",                // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             null,                   // createdBy
             null,                   // createdDate
@@ -175,9 +178,10 @@ public class AccountResourceIntTest {
             "password",             // password
             "Funky",                // firstName
             "One",                  // lastName
+            "13812345678",          // mobile
             "funky@example.com",    // e-mail
             true,                   // activated
-            "zh-cn",                   // langKey
+            "zh-cn",                // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             null,                   // createdBy
             null,                   // createdDate
@@ -204,9 +208,10 @@ public class AccountResourceIntTest {
             "password",         // password
             "Bob",              // firstName
             "Green",            // lastName
+            "13812345678",      // mobile
             "invalid",          // e-mail <-- invalid
             true,               // activated
-            "zh-cn",               // langKey
+            "zh-cn",            // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             null,               // createdBy
             null,               // createdDate
@@ -233,9 +238,10 @@ public class AccountResourceIntTest {
             "123",              // password with only 3 digits
             "Bob",              // firstName
             "Green",            // lastName
+            "13812345678",      // mobile
             "bob@example.com",  // e-mail
             true,               // activated
-            "zh-cn",               // langKey
+            "zh-cn",            // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             null,               // createdBy
             null,               // createdDate
@@ -263,9 +269,10 @@ public class AccountResourceIntTest {
             "password",             // password
             "Alice",                // firstName
             "Something",            // lastName
+            "13812345678",          // mobile
             "alice@example.com",    // e-mail
             true,                   // activated
-            "zh-cn",                   // langKey
+            "zh-cn",                // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             null,                   // createdBy
             null,                   // createdDate
@@ -274,7 +281,7 @@ public class AccountResourceIntTest {
         );
 
         // Duplicate login, different e-mail
-        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
+        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(), validUser.getMobile(),
             "alicejr@example.com", true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
 
         // Good user
@@ -305,6 +312,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "John",                 // firstName
             "Doe",                  // lastName
+            "13812345678",          // mobile
             "john@example.com",     // e-mail
             true,                   // activated
             "zh-cn",                   // langKey
@@ -316,7 +324,7 @@ public class AccountResourceIntTest {
         );
 
         // Duplicate e-mail, different login
-        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
+        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(), validUser.getMobile(),
             validUser.getEmail(), true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
 
         // Good user
@@ -346,9 +354,10 @@ public class AccountResourceIntTest {
             "password",             // password
             "Bad",                  // firstName
             "Guy",                  // lastName
+            "13812345678",          // mobile
             "badguy@example.com",   // e-mail
             true,                   // activated
-            "zh-cn",                   // langKey
+            "zh-cn",                // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.ADMIN)),
             null,                   // createdBy
             null,                   // createdDate
@@ -375,9 +384,10 @@ public class AccountResourceIntTest {
             "funky-log!n",          // login <-- invalid
             "Funky",                // firstName
             "One",                  // lastName
+            "13812345678",          // mobile
             "funky@example.com",    // e-mail
             true,                   // activated
-            "zh-cn",                   // langKey
+            "zh-cn",                // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
         );
 

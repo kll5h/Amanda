@@ -43,6 +43,8 @@
             "newpassword.placeholder": "新しいパスワード",
             "confirmpassword": "新しいパスワード(確認)",
             "confirmpassword.placeholder": "新しいパスワード(確認)",
+            "mobile": "携帯電話",
+            "mobile.placeholder": "あなたの携帯電話",
             "email": "メールアドレス",
             "email.placeholder": "あなたのメールアドレス"
         },
@@ -65,6 +67,12 @@
                     "required": "パスワード(確認)を入力してください。",
                     "minlength": "パスワード(確認)は5文字以上で入力してください。",
                     "maxlength": "パスワード(確認)は50文字以下で入力してください。"
+                },
+                "mobile": {
+                    "required": "携帯電話を入力してください。",
+                    "invalid": "正しい携帯電話を入力してください。",
+                    "minlength": "携帯電話は11文字以上で入力してください。",
+                    "maxlength": "携帯電話は11文字以下で入力してください。"
                 },
                 "email": {
                     "required": "メールアドレスを入力してください。",

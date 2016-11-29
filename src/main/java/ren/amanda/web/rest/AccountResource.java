@@ -77,7 +77,7 @@ public class AccountResource {
                 .map(user -> new ResponseEntity<>("e-mail address already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> {
                     User user = userService.createUser(managedUserVM.getLogin(), managedUserVM.getPassword(),
-                    managedUserVM.getFirstName(), managedUserVM.getLastName(), managedUserVM.getEmail().toLowerCase(),
+                    managedUserVM.getFirstName(), managedUserVM.getLastName(), managedUserVM.getMobile(), managedUserVM.getEmail().toLowerCase(),
                     managedUserVM.getLangKey());
                     String baseUrl = request.getScheme() + // "http"
                     "://" +                                // "://"
@@ -87,7 +87,6 @@ public class AccountResource {
                     request.getContextPath();              // "/myContextPath" or "" if deployed in root context
 
                     mailService.sendActivationEmail(user, baseUrl);
-                    //smsService.sendActivationCode(user, "123456");
                     smsService.sendActivationCode(user);
                     return new ResponseEntity<>(HttpStatus.CREATED);
                 })
@@ -104,10 +103,13 @@ public class AccountResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<String> activateAccount(@RequestParam(value = "key") String key) {
-        return userService.activateRegistration(key)
-            .map(user -> new ResponseEntity<String>(HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+    public ResponseEntity<String> activateAccount(@RequestParam(value = "mobile") String mobile, @RequestParam(value = "key") String key) {
+		return org.springframework.util.StringUtils.isEmpty(mobile)
+				? userService.activateRegistrationByEmail(key).map(user -> new ResponseEntity<String>(HttpStatus.OK))
+						.orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR))
+				: userService.activateRegistrationByMobile(mobile, key)
+						.map(user -> new ResponseEntity<String>(HttpStatus.OK))
+						.orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     /**
@@ -158,7 +160,7 @@ public class AccountResource {
         return userRepository
             .findOneByLogin(SecurityUtils.getCurrentUserLogin())
             .map(u -> {
-                userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
+                userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getMobile() ,userDTO.getEmail(),
                     userDTO.getLangKey());
                 return new ResponseEntity<String>(HttpStatus.OK);
             })

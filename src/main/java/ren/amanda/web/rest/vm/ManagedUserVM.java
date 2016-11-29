@@ -1,13 +1,12 @@
 package ren.amanda.web.rest.vm;
 
 import java.time.ZonedDateTime;
-
 import java.util.Set;
+
+import javax.validation.constraints.Size;
 
 import ren.amanda.domain.User;
 import ren.amanda.service.dto.UserDTO;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.
@@ -43,10 +42,10 @@ public class ManagedUserVM extends UserDTO {
         this.password = null;
     }
 
-    public ManagedUserVM(Long id, String login, String password, String firstName, String lastName,
+    public ManagedUserVM(Long id, String login, String password, String firstName, String lastName, String mobile,
                          String email, boolean activated, String langKey, Set<String> authorities,
                          String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate) {
-        super(login, firstName, lastName, email, activated, langKey, authorities);
+        super(login, firstName, lastName, mobile, email, activated, langKey, authorities);
         this.id = id;
         this.createdBy = createdBy;
         this.createdDate = createdDate;

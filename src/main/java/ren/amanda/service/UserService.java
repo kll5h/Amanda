@@ -42,11 +42,37 @@ public class UserService {
     @Inject
     private AuthorityRepository authorityRepository;
 
-    public Optional<User> activateRegistration(String key) {
+    /*public Optional<User> activateRegistration(String key) {
         log.debug("Activating user for activation key {}", key);
         return userRepository.findOneByActivationKey(key)
             .map(user -> {
                 // activate given user for the registration key.
+                user.setActivated(true);
+                user.setActivationKey(null);
+                userRepository.save(user);
+                log.debug("Activated user: {}", user);
+                return user;
+            });
+    }*/
+    
+    public Optional<User> activateRegistrationByEmail(String key) {
+        log.debug("Activating user for activation key {}", key);
+        return userRepository.findOneByActivationKey(key)
+            .map(user -> {
+                // activate given user for the registration key.
+                user.setActivated(true);
+                user.setActivationKey(null);
+                userRepository.save(user);
+                log.debug("Activated user: {}", user);
+                return user;
+            });
+    }
+    
+    public Optional<User> activateRegistrationByMobile(String mobile, String code) {
+        log.debug("Activating user for activation mobile {} and code {}", mobile, code);
+        return userRepository.findOneByMobileAndActivationKey(mobile, code)
+            .map(user -> {
+                // activate given user for the registration mobile and code.
                 user.setActivated(true);
                 user.setActivationKey(null);
                 userRepository.save(user);
@@ -83,7 +109,7 @@ public class UserService {
             });
     }
 
-    public User createUser(String login, String password, String firstName, String lastName, String email,
+    public User createUser(String login, String password, String firstName, String lastName, String mobile, String email,
         String langKey) {
 
         User newUser = new User();
@@ -95,6 +121,7 @@ public class UserService {
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(firstName);
         newUser.setLastName(lastName);
+        newUser.setMobile(mobile);
         newUser.setEmail(email);
         newUser.setLangKey(langKey);
         // new user is not active
@@ -113,6 +140,7 @@ public class UserService {
         user.setLogin(managedUserVM.getLogin());
         user.setFirstName(managedUserVM.getFirstName());
         user.setLastName(managedUserVM.getLastName());
+        user.setMobile(managedUserVM.getMobile());
         user.setEmail(managedUserVM.getEmail());
         if (managedUserVM.getLangKey() == null) {
             user.setLangKey("zh-cn"); // default language
@@ -136,10 +164,11 @@ public class UserService {
         return user;
     }
 
-    public void updateUser(String firstName, String lastName, String email, String langKey) {
+    public void updateUser(String firstName, String lastName, String mobile, String email, String langKey) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(u -> {
             u.setFirstName(firstName);
             u.setLastName(lastName);
+            u.setMobile(mobile);
             u.setEmail(email);
             u.setLangKey(langKey);
             userRepository.save(u);
@@ -147,7 +176,7 @@ public class UserService {
         });
     }
 
-    public void updateUser(Long id, String login, String firstName, String lastName, String email,
+    public void updateUser(Long id, String login, String firstName, String lastName, String mobile, String email,
         boolean activated, String langKey, Set<String> authorities) {
 
         userRepository
@@ -156,6 +185,7 @@ public class UserService {
                 u.setLogin(login);
                 u.setFirstName(firstName);
                 u.setLastName(lastName);
+                u.setMobile(mobile);
                 u.setEmail(email);
                 u.setActivated(activated);
                 u.setLangKey(langKey);

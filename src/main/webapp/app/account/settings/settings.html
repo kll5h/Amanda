@@ -50,6 +50,30 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="control-label" for="mobile" data-translate="global.form.mobile">Mobile</label>
+                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="{{'global.form.mobile.placeholder' | translate}}"
+                           ng-model="vm.settingsAccount.mobile" ng-minlength=11 ng-maxlength=11 
+                           ng-pattern="/^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\d{8}$/" required maxlength="11">
+                    <div ng-show="form.mobile.$dirty && form.mobile.$invalid">
+                        <p class="help-block"
+                               ng-show="form.mobile.$error.required" data-translate="global.messages.validate.mobile.required">
+                            Your mobile is required.
+                        </p>
+                        <p class="help-block"
+                               ng-show="form.mobile.$error.pattern" data-translate="global.messages.validate.mobile.invalid">
+                            Your mobile is invalid.
+                        </p>
+                        <p class="help-block"
+                               ng-show="form.mobile.$error.minlength" data-translate="global.messages.validate.mobile.minlength">
+                            Your mobile is required to be at least 11 characters.
+                        </p>
+                        <p class="help-block"
+                               ng-show="form.mobile.$error.maxlength" data-translate="global.messages.validate.mobile.maxlength">
+                            Your mobile cannot be longer than 11 characters.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label" for="email" data-translate="global.form.email">E-mail</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
                            ng-model="vm.settingsAccount.email" ng-minlength=5 ng-maxlength=100 required maxlength="100">

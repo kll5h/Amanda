@@ -43,6 +43,8 @@
             "newpassword.placeholder": "New password",
             "confirmpassword": "New password confirmation",
             "confirmpassword.placeholder": "Confirm the new password",
+            "mobile": "Mobile",
+            "mobile.placeholder": "Your mobile",
             "email": "E-mail",
             "email.placeholder": "Your e-mail"
         },
@@ -65,6 +67,12 @@
                     "required": "Your confirmation password is required.",
                     "minlength": "Your confirmation password is required to be at least 4 characters.",
                     "maxlength": "Your confirmation password cannot be longer than 50 characters."
+                },
+                "mobile": {
+                    "required": "Your mobile is required.",
+                    "invalid": "Your mobile is invalid.",
+                    "minlength": "Your mobile is required to be at least 11 characters.",
+                    "maxlength": "Your mobile cannot be longer than 11 characters."
                 },
                 "email": {
                     "required": "Your e-mail is required.",

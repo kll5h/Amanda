@@ -10,7 +10,7 @@
     function ActivationController ($stateParams, Auth, LoginService) {
         var vm = this;
 
-        Auth.activateAccount({key: $stateParams.key}).then(function () {
+        Auth.activateAccount({mobile: $stateParams.mobile, key: $stateParams.key}).then(function () {
             vm.error = null;
             vm.success = 'OK';
         }).catch(function () {

@@ -10,7 +10,7 @@
     function stateConfig($stateProvider) {
         $stateProvider.state('activate', {
             parent: 'account',
-            url: '/activate?key',
+            url: '/activate?mobile&key',
             data: {
                 authorities: [],
                 pageTitle: 'activate.title'

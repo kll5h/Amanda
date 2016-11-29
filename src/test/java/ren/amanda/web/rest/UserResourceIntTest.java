@@ -50,6 +50,7 @@ public class UserResourceIntTest {
         user.setLogin("test");
         user.setPassword(RandomStringUtils.random(60));
         user.setActivated(true);
+        user.setMobile("13812345678");
         user.setEmail("test@test.com");
         user.setFirstName("test");
         user.setLastName("test");

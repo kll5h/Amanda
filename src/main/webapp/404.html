@@ -36,6 +36,16 @@
             margin: 0 auto;
             width: 280px;
         }
+        
+        .err_img span {
+            color: #3c4355;
+            font-size: 36px;
+            left: 0;
+            position: absolute;
+            text-align: center;
+            top: 148px;
+            width: 100%;
+        }
 
         @media only screen and (max-width: 280px) {
 
@@ -53,8 +63,12 @@
     </style>
 </head>
 <body>
-    <h1>Page Not Found</h1>
-    <p>Sorry, but the page you were trying to view does not exist.</p>
+    <!-- <h1>Page Not Found</h1>
+    <p>Sorry, but the page you were trying to view does not exist.</p> -->
+	<div class="err_img">
+		<img src="content/images/404.png">
+		<span>oops~好像走错路了</span>
+	</div>
 </body>
 </html>
 <!-- IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx -->
