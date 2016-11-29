@@ -20,7 +20,7 @@
                 "data": "其它资料"
             },
             "data": {
-                "remoteAddress": "客户端IP:"
+                "clientIP": "客户端IP:"
             }
         }
     }
