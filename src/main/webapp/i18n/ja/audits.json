@@ -20,7 +20,7 @@
                 "data": "エクストラデータ"
             },
             "data": {
-                "remoteAddress": "リモートアドレス:"
+                "Client IP": "クライアントIP:"
             }
         }
     }
