@@ -20,7 +20,7 @@
                 "data": "エクストラデータ"
             },
             "data": {
-                "clientIP": "クライアントIP:"
+                "Client IP": "クライアントIP:"
             }
         }
     }
